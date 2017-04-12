@@ -1,3 +1,4 @@
+#include "fs.h"
 #include "main.h"
 #include "touch.h"
 #include "utils.h"
@@ -59,10 +60,53 @@ void fillPattern() {
 	color[2] = rand() % (255 - 2*diff) + diff;
 }
 
+void saveHighScore()
+{
+	char buf[10], buf2[10];
+	int tempScore = 0;
+	
+	if (!(dirExists("ux0:/data/PickrVITA")))
+	{
+		SceUID dir = sceIoDopen("ux0:/data/PickrVITA");
+		sceIoMkdir("ux0:/data/PickrVITA", 0777);
+		sceIoDclose(dir);
+		
+		if (!(fileExists("ux0:/data/PickrVITA/highscore.txt")))
+		{
+			sprintf(buf, "%d", maxStages);
+			writeFile("ux0:/data/PickrVITA/highscore.txt", buf, 10);
+		}
+	}
+	
+	readFile("ux0:/data/PickrVITA/highscore.txt", buf2, 10);
+	sscanf(buf2, "%d", &tempScore);
+	
+	if (maxStages > tempScore)
+	{
+		sprintf(buf, "%d", maxStages);
+		writeFile("ux0:/data/PickrVITA/highscore.txt", buf, 10);
+	}
+}
+
+int getHighScore()
+{
+	char buf[10];
+	int score;
+	
+	if (fileExists("ux0:/data/PickrVITA/highscore.txt"))
+	{
+		readFile("ux0:/data/PickrVITA/highscore.txt", buf, 5);
+		sscanf(buf, "%d", &score);
+	}
+	
+	return score;
+}
+
 void endgame() {
 	char tmp[26], tmp2[20], tmp3[20];
+	saveHighScore();
 	snprintf(tmp, 24, "Levels completed: %d!", stages);
-	snprintf(tmp2, 20, "Best score: %d", maxStages);
+	snprintf(tmp2, 20, "Best score: %d", getHighScore());
 	snprintf(tmp3, 20, "Games played: %d", matches);
 	
 	while(1) {

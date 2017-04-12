@@ -3,7 +3,7 @@ PROJECT_TITLE := Pickr VITA
 TITLE_ID 	:= PICKRV016
 SOURCES 	:= src
 
-OBJS = main.o touch.o utils.o \
+OBJS = fs.o main.o touch.o utils.o \
 	   res/lives.o res/lives16p.o \
 
 PREFIX   = arm-vita-eabi
