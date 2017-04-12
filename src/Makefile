@@ -3,7 +3,7 @@ PROJECT_TITLE := Pickr VITA
 TITLE_ID 	:= PICKRV016
 SOURCES 	:= src
 
-OBJS = main.o utils.o \
+OBJS = main.o touch.o utils.o \
 	   res/lives.o res/lives16p.o \
 
 PREFIX   = arm-vita-eabi
@@ -16,7 +16,7 @@ ASFLAGS  = $(CFLAGS)
 LIBDIR = 
 LDFLAGS = 
 LIBS := -lvita2d -lSceDisplay_stub -lSceGxm_stub \
-		-lSceSysmodule_stub -lSceCtrl_stub -lScePvf_stub \
+		-lSceSysmodule_stub -lSceCtrl_stub -lSceTouch_stub -lScePvf_stub \
 		-lSceCommonDialog_stub -lfreetype -lpng -ljpeg -lz -lm -lc \
 		-lSceAppUtil_stub \
 
