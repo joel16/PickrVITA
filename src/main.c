@@ -48,7 +48,7 @@ void initServices()
 	srand(time(NULL));
 	
 	vita2d_init();
-	vita2d_set_clear_color(RGBA8(255, 255, 255, 255));
+	vita2d_set_clear_color(RGBA8(245, 245, 245, 255));
 	
 	_lives = loadPngWithFilter(&_binary_res_lives_png_start);
 	_lives16p = loadPngWithFilter(&_binary_res_lives16p_png_start);
@@ -116,7 +116,7 @@ void endgame()
 {
 	char tmp[26], tmp2[20], tmp3[20];
 	saveHighScore();
-	snprintf(tmp, 24, "Levels completed: %d!", stages);
+	snprintf(tmp, 24, "You scored %d!", stages);
 	snprintf(tmp2, 20, "Best score: %d", getHighScore());
 	snprintf(tmp3, 20, "Games played: %d", matches);
 	
@@ -132,12 +132,12 @@ void endgame()
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 			
-		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 4.0f, "End game")) / 2, 80, RGBA8(0,0,0,255), 4.0f, "End game!");
-		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp)) / 2, 136, RGBA8(0,0,0,255), 1.8f, tmp);
-		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press X to restart")) / 2, 260, RGBA8(200,0,0,200), 1.2f, "Press X to restart");
+		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 4.0f, "GAME OVER")) / 2, 80, RGBA8(200, 0, 0, 255), 4.0f, "GAME OVER");
+		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp)) / 2, 136, RGBA8(128, 128, 128, 255), 1.8f, tmp);
+		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press X to try again")) / 2, 260, RGBA8(128, 128, 128, 255), 1.2f, "Press X to try again");
 	
-		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp3)) / 2, 176, RGBA8(0,0,0,200), 1.8f, tmp2);
-		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp3)) / 2, 216, RGBA8(0,0,0,200), 1.8f, tmp3); 
+		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp2)) / 2, 176, RGBA8(128, 128, 128, 255), 1.8f, tmp2);
+		vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, tmp3)) / 2, 216, RGBA8(128, 128, 128, 255), 1.8f, tmp3); 
 		
 		endDrawing();
 	}
@@ -145,18 +145,23 @@ void endgame()
 
 void menu_start() 
 {
-	char *instr = "Try to pick the different color square!";
+	char *instr = "One of these colours is not like the other one!";
+	char *instr_2 = "Which one?";
 	
 	vita2d_start_drawing();
 	vita2d_clear_screen();
 
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 4.0f, "PICKR")) / 2, 80, RGBA8(0,0,0,255), 4.0f, "PICKR");
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press X to start new game (with timer)")) / 2, 135, RGBA8(0,0,0,200), 1.8f, "Press X to start new game (with timer)");
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press [ ] to start new game (without timer)")) / 2, 185, RGBA8(0,0,0,200), 1.8f, "Press [ ] to start new game (without timer)");
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press O to exit")) / 2, 220, RGBA8(0,0,0,200), 1.2f, "Press O to exit");
-	vita2d_pvf_draw_text(font, 948 - vita2d_pvf_text_width(font, 1.2f, ver), 530, RGBA8(0,0,0,200), 1.2f, ver);
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 4.0f, "Pickr")) / 2, 80, RGBA8(0, 0, 0, 200), 4.0f, "Pickr");
+	
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, instr)) / 2, 130, RGBA8(128, 128, 128, 255), 1.2f, instr);
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, instr_2)) / 2, 165, RGBA8(128, 128, 128, 255), 1.2f, instr_2);
+	
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press X to start new game (with timer)")) / 2, 220, RGBA8(128, 128, 128, 255), 1.8f, "Press X to start new game (with timer)");
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press [ ] to start new game (without timer)")) / 2, 270, RGBA8(128, 128, 128, 255), 1.8f, "Press [ ] to start new game (without timer)");
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press O to exit")) / 2, 305, RGBA8(128, 128, 128, 255), 1.2f, "Press O to exit");
+	vita2d_pvf_draw_text(font, 948 - vita2d_pvf_text_width(font, 1.2f, ver), 530, RGBA8(0, 0, 0, 255), 1.2f, ver);
 
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, instr)) / 2, 270, RGBA8(200,0,0,200), 1.2f, instr);
+	
 	vita2d_pvf_draw_text(font, 5, 507, RGBA8(0,0,0,150), 1.2f, "Based on Sean M. Tracey's idea");
 	vita2d_pvf_draw_text(font, 5, 530, RGBA8(0,0,0,180), 1.2f, "Made with       by Bernardo Giordano, ported by Joel16");
 	vita2d_draw_texture(_lives16p, 125, 515);
@@ -213,7 +218,7 @@ void level(bool timer)
 			else
 				vita2d_draw_texture_tint(_lives, 10 + i*27, 10, RGBA8(50, 50, 50, 200));
 		}
-		vita2d_pvf_draw_text(font, 945 - vita2d_pvf_text_width(font, 1.8f, stagestr), 35, RGBA8(200, 0, 0, 200), 1.8f, stagestr);
+		vita2d_pvf_draw_text(font, 945 - vita2d_pvf_text_width(font, 1.8f, stagestr), 35, RGBA8(128, 128, 128, 200), 1.8f, stagestr);
 
 		y = 67;
 		for (unsigned int i = 0; i < 4; i++) 
