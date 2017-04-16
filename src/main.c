@@ -161,7 +161,7 @@ void mainMenu()
 	
 	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press X to start new game (with timer)")) / 2, 220, RGBA8(128, 128, 128, 255), 1.8f, "Press X to start new game (with timer)");
 	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.8f, "Press [ ] to start new game (without timer)")) / 2, 270, RGBA8(128, 128, 128, 255), 1.8f, "Press [ ] to start new game (without timer)");
-	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press O to exit")) / 2, 300, RGBA8(128, 128, 128, 255), 1.2f, "Press O to exit");
+	vita2d_pvf_draw_text(font, (960 - vita2d_pvf_text_width(font, 1.2f, "Press O to exit")) / 2, 315, RGBA8(128, 128, 128, 255), 1.2f, "Press O to exit");
 	vita2d_pvf_draw_text(font, 948 - vita2d_pvf_text_width(font, 1.2f, ver), 530, RGBA8(0, 0, 0, 255), 1.2f, ver);
 
 	
