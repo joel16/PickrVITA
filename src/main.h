@@ -12,6 +12,6 @@ vita2d_texture *_lives, *_lives16p, *wifi;
 vita2d_pvf *font;
 
 char* ver = "v1.1";
-int _time, diff, stages, maxStages, lives, matches;
+int _time, diff, stages, maxStages, lives, matches, inRow;
 bool pattern[16];
 unsigned int color[3];
